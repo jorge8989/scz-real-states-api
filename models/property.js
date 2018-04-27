@@ -17,10 +17,14 @@ var propertySchema = mongoose.Schema({
     type: Number,
     required: true
   },
+  price: {
+    type: Number,
+    required: true,
+  },
   create_date: {
     type: Date,
     default: Date.now
-  }
+  },
 });
 
 var Property = module.exports = mongoose.model('Property', propertySchema);
