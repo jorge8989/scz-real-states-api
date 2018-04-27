@@ -45,11 +45,5 @@ module.exports.findProperty = function(id, callback) {
 
 module.exports.updateProperty = function(id, property, callback) {
   var query = {_id: id};
-  var update = {
-    title: property.title,
-    description: property.description,
-    latitude: property.latitude,
-    longitude: property.longitude,
-  };
-  Property.findOneAndUpdate(query, update, {new: true}, callback);
+  Property.findOneAndUpdate(query, property, {new: true}, callback);
 }
