@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var app = express();
 Property = require('./models/property');
+Photo = require('./models/photo');
 
 app.use(bodyParser.json());
 app.use(function(req, res, next) {

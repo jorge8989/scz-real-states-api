@@ -21,6 +21,7 @@ var propertySchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  photos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Photo' }],
   create_date: {
     type: Date,
     default: Date.now
@@ -30,7 +31,7 @@ var propertySchema = mongoose.Schema({
 var Property = module.exports = mongoose.model('Property', propertySchema);
 
 module.exports.getProperties = function(callback, limit) {
-  Property.find(callback).limit(limit);
+  Property.find().populate('photos').limit(limit).exec(callback);
 }
 
 module.exports.addProperty = function(property, callback) {
@@ -44,7 +45,7 @@ module.exports.removeProperty = function(id, callback) {
 
 module.exports.findProperty = function(id, callback) {
   var query = {_id: id};
-  Property.findById(query, callback);
+  Property.findOne(query).populate('photos').exec(callback);
 }
 
 module.exports.updateProperty = function(id, property, callback) {
